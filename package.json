@@ -1,0 +1,15 @@
+{
+  "name": "openstocksserver",
+  "version": "1.0.0",
+  "description": "Serverside for OpenStocks",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wade Marshall",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.14.1",
+    "socket.io": "^1.7.3"
+  }
+}
