@@ -19,10 +19,13 @@ socket.on("connection", newConnection);
 function newConnection(socket) {
   console.log("New Connection: " + socket.id);
   clients.push(socket);
-  socket.on("test", testCon);
-}
-socket.on("test", testCon);
+  socket.on("ready", testCon);
 
-function testCon(data) {
-  console.log(data);
+  function testCon(data) {
+    console.log(data);
+    if (data.role == "host") {
+      socket.emit("host");
+      console.log("host");
+    }
+  }
 }
