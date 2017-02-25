@@ -10,6 +10,12 @@ function main() {
   socket.emit("hostConnection", identity);
   console.log("Emit");
   socket.on("PlayerJoined", addPlayerToRow);
+  $("#Begin").click(beginGame);
+
+  function beginGame() {
+    console.log("begin");
+    socket.emit("StartGame");
+  }
 }
 
 function addPlayerToRow(player) {
