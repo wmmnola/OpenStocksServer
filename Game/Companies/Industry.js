@@ -5,6 +5,12 @@ class Industry extends BaseCompany {
     super(name, value);
     this.shares = shares;
   }
+  buyGoods() {
+
+  }
+  produceGoods() {
+
+  }
 }
 
 module.exports = Industry;

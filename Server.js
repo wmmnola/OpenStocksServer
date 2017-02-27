@@ -1,5 +1,5 @@
 var clients = [];
-var sockets = [];
+var connectedSockets = [];
 
 var express = require("express");
 var socket = require("socket.io");
@@ -22,7 +22,6 @@ function newConnection(socket) {
   socket.on("clientConnection", clientConnected);
   socket.on("hostConnection", hostConnected);
   socket.on("StartGame", gameInit);
-  console.log("wtf");
 
   function hostConnected(data) {
     hostSocket = socket;
@@ -39,14 +38,14 @@ function newConnection(socket) {
     var c = new client(socket.id, data.role, address);
     if (!running) {
       clients.push(c);
-      sockets.push(socket);
+      connectedSockets.push(socket);
     }
     hostSocket.emit("PlayerJoined", c);
   }
 
   function gameInit(sockets) {
     running = true;
-    Game();
+    Game(connectedSockets);
   }
 }
 var client = function(id, role, ip) {

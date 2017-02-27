@@ -5,3 +5,5 @@ class Steel extends BaseGood {
     super(value, supply, demand);
   }
 }
+
+module.exports = Steel;
