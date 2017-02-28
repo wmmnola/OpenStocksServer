@@ -9,9 +9,14 @@ function main(sockets) {
     var p = new Player(sockets[i]);
     players.push(p);
     players[i].nameCompany();
+    players[i].socket.on("NameReply", players[i].createCompany);
+    players[i].send();
+
   }
-  console.log(players);
+
 
 }
+
+
 
 module.exports = main;
