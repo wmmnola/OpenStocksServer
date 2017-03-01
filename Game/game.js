@@ -1,6 +1,7 @@
 var Industry = require("./Companies/Industry");
 var Player = require("./player");
 var companies = [];
+var goods = [];
 var STO = require("./Companies/StockTradingCompany");
 
 var players = [];

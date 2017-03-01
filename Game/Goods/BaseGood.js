@@ -1,17 +1,13 @@
 class BaseGood {
-  constructor(value, supply, demand) {
-    this.value = value;
+  constructor(value, supply) {
     this.supply = supply;
-    this.demand = demand;
+    this.value = value;
   }
-  buyGood() {
-    this.supply -= 1;
-    this.demand += 1;
+  calculateSupply(supply) {
+    this.value += (this.supply - supply);
+    this.supply = supply;
   }
-  sellGood() {
-    this.supply += 1;
-    this.demand += 1;
-  }
+
 }
 
 module.exports = BaseGood;
