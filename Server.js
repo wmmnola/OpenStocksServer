@@ -45,7 +45,7 @@ function newConnection(socket) {
 
   function gameInit(sockets) {
     running = true;
-    Game(connectedSockets);
+    Game.main(connectedSockets);
   }
 }
 var client = function(id, role, ip) {

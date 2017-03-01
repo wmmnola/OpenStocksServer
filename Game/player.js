@@ -1,27 +1,32 @@
 var STO = require("./Companies/StockTradingCompany");
-
+var Game = require("./game");
+console.log(Game);
 class Player {
   constructor(socket) {
     this.socket = socket;
-    console.log(this.socket);
+    this.id = socket.id;
+    this.ready = false;
   }
   nameCompany() {
-    this.socket.emit("NameRequest");
+    this.socket.emit("NameRequest", this.socket.id);
   }
   createCompany(data) {
-    this.company = new STO(data.name, data.identifer);
+    console.log(data);
+    this.company = new STO(data.name, data.identity);
+    this.ready = true;
   }
-  send() {
-    sendData(this);
+
+  update(companies) {
+    sendData(this, companies);
   }
 }
 
-function sendData(player) {
-  console.log();
+function sendData(player, companies) {
   var payload = {
-    company: player.company
+    company: player.company,
+    companies: companies,
   };
-  player.socket.emit("sendData", "test");
+  player.socket.emit("sendData", payload);
 }
 
 
