@@ -1,7 +1,8 @@
 class Share {
   constructor() {}
   calculateSharePrice(company) {
-    this.price = company.value / company.shares;
+    this.price = (parseFloat(company.value) / company.shares.length).toFixed(
+      2);
   }
 }
 

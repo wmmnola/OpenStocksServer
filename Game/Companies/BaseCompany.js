@@ -16,6 +16,12 @@ class BaseCompany {
       this.shares.push(s);
     }
   }
+  revalueShares() {
+    this.sharevalue = (parseFloat(this.value) / this.shares.length).toFixed(2);
+    for (var i = 0; i < this.shares.length; i++) {
+      this.shares[i].calculateSharePrice(this);
+    }
+  }
 }
 
 module.exports = BaseCompany;

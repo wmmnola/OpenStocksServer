@@ -13,7 +13,6 @@ class Player {
   createCompany(data) {
     console.log(data);
     this.company = new STO(data.name, data.identity);
-    this.ready = true;
   }
 
   update(companies) {
