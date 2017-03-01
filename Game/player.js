@@ -23,7 +23,7 @@ class Player {
 
 function sendData(player, companies) {
   var payload = {
-    company: player.company,
+    playerCompany: player.company,
     companies: companies,
   };
   player.socket.emit("sendData", payload);
