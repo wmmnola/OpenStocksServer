@@ -6,6 +6,7 @@ class BaseCompany {
     this.value = value;
     this.identifer = identifer
     this.shares = [];
+    this.money = 0;
     this.issueShares(numOfShares);
   }
   issueShares(numOfShares) {

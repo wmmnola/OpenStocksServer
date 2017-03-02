@@ -5,6 +5,7 @@ class StockTradingCompany extends BaseCompany {
     super(name, 0, identifer, 20);
     this.ownedShares = [];
     this.value = 0;
+    this.money = 100;
   }
   buyShares() {
 
