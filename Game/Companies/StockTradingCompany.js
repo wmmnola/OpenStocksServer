@@ -14,9 +14,11 @@ class StockTradingCompany extends BaseCompany {
 
   }
   calculateValue() {
+    var sum;
     for (var i = 0; i < this.ownedShares.length; i++) {
-      this.value += this.ownedShares[i].price;
+      sum = parseFloat(this.ownedShares[i].price);
     }
+    this.value = parseFloat(sum).toFixed(2);
   }
 }
 

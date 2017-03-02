@@ -48,9 +48,25 @@ function find_id(id, playerlist) {
 function endTurnHandler(data) {
   // do something with data
   var id = data.id;
+  console.log(data.orders);
   var player = find_id(id, players);
   player.ready = true;
+  if (data.orders) {
+    for (var i = 0; i < data.orders.length; i++) {
+      var company = find_company_identifier(data.orders[i].company);
+      company.sellStock(player, data.orders[i]);
+    }
+  }
+  updateStock();
   if (all_players_ready()) nextGamePhase();
+}
+
+function find_company_identifier(company) {
+  console.log(company);
+  for (var i = 0; i < companies.length; i++) {
+    if (companies[i].identifer == company.identifer) return companies[i];
+  }
+  throw "Fatal Error: Comapny doesnt exit"
 }
 
 function all_players_ready() {
@@ -59,6 +75,12 @@ function all_players_ready() {
     if (players[i].ready == false) return false;
   }
   return true;
+}
+
+function updateStock() {
+  for (var i = 0; i < players.length; i++) {
+    players[i].socket.emit("stockUpdate", companies);
+  }
 }
 
 function nextGamePhase() {
@@ -71,6 +93,7 @@ function nextGamePhase() {
   }
   for (var i = 0; i < players.length; i++) {
     players[i].ready = false;
+    players[i].company.calculateValue();
     players[i].update(companies);
   }
 }

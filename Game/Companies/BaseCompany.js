@@ -6,6 +6,7 @@ class BaseCompany {
     this.value = value;
     this.identifer = identifer
     this.shares = [];
+    this.selfOwnedSock = [];
     this.money = 0;
     this.issueShares(numOfShares);
   }
@@ -15,6 +16,7 @@ class BaseCompany {
       var s = new Share();
       s.calculateSharePrice(this);
       this.shares.push(s);
+      this.selfOwnedSock.push(s);
     }
   }
   revalueShares() {
@@ -22,6 +24,17 @@ class BaseCompany {
     for (var i = 0; i < this.shares.length; i++) {
       this.shares[i].calculateSharePrice(this);
     }
+  }
+  sellStock(player, order) {
+    for (var i = 0; i < order.buyAmount; i++) {
+      player.company.ownedShares.push(this.shares[i]);
+
+      //this.money += parseFloat(this.shares[i].price).toFixed(2);
+    }
+    this.selfOwnedSock.splice(0, order.buyAmount);
+    player.company.money -= parseFloat(order.total).toFixed(2);
+    this.money += parseFloat(order.total).toFixed(2);
+    this.money = parseFloat(this.money).toFixed(2);
   }
 }
 
