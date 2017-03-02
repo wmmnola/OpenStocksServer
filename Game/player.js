@@ -17,10 +17,14 @@ class Player {
 
   update(companies) {
     sendData(this, companies);
+    var index = companies.indexOf(this.company);
+    console.log(companies[index]);
+    console.log(this.company);
   }
 }
 
 function sendData(player, companies) {
+
   var payload = {
     playerCompany: player.company,
     companies: companies,

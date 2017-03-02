@@ -48,7 +48,6 @@ function find_id(id, playerlist) {
 function endTurnHandler(data) {
   // do something with data
   var id = data.id;
-  console.log(data.orders);
   var player = find_id(id, players);
   player.ready = true;
   if (data.orders) {
@@ -88,12 +87,14 @@ function nextGamePhase() {
   for (var i = 0; i < primaries.length; i++) {
     primaries[i].randomizeStockPrice();
   }
+  for (var i = 0; i < players.length; i++) {
+    players[i].ready = false;
+    players[i].company.calculateValue()
+  }
   for (var i = 0; i < companies.length; i++) {
     companies[i].revalueShares();
   }
   for (var i = 0; i < players.length; i++) {
-    players[i].ready = false;
-    players[i].company.calculateValue();
     players[i].update(companies);
   }
 }

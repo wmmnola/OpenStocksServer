@@ -8,6 +8,7 @@ class BaseCompany {
     this.shares = [];
     this.selfOwnedSock = [];
     this.money = 0;
+    this.numOfShares = numOfShares;
     this.issueShares(numOfShares);
   }
   issueShares(numOfShares) {
@@ -24,8 +25,10 @@ class BaseCompany {
     for (var i = 0; i < this.shares.length; i++) {
       this.shares[i].calculateSharePrice(this);
     }
+    //console.log(this.identifer + ":" + this.value);
   }
   sellStock(player, order) {
+    //console.log(order);
     for (var i = 0; i < order.buyAmount; i++) {
       player.company.ownedShares.push(this.shares[i]);
 

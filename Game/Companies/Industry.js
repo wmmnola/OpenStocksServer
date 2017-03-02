@@ -15,8 +15,7 @@ class Industry extends BaseCompany {
     var change = (parseFloat(this.value) * percentChange);
     var value = parseFloat(this.value) + change;
     this.value = parseFloat(value).toFixed(2);
-    console.log(this.value + " change: " + change + " percentChange: " +
-      percentChange);
+
 
   }
 }
