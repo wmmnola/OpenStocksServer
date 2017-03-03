@@ -14,7 +14,7 @@ class BaseCompany {
   issueShares(numOfShares) {
     this.sharevalue = this.value / numOfShares;
     for (var i = 0; i < numOfShares; i++) {
-      var s = new Share();
+      var s = new Share(this.identifer);
       s.calculateSharePrice(this);
       this.shares.push(s);
       this.selfOwnedSock.push(s);

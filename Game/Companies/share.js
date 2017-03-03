@@ -1,5 +1,7 @@
 class Share {
-  constructor() {}
+  constructor(ident) {
+    this.identifier = ident;
+  }
   calculateSharePrice(company) {
     this.price = (parseFloat(company.value) / company.numOfShares).toFixed(
       2);

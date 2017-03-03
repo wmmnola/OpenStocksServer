@@ -50,10 +50,10 @@ function endTurnHandler(data) {
   var id = data.id;
   var player = find_id(id, players);
   player.ready = true;
-  if (data.orders) {
-    for (var i = 0; i < data.orders.length; i++) {
-      var company = find_company_identifier(data.orders[i].company);
-      company.sellStock(player, data.orders[i]);
+  if (data.buy_orders) {
+    for (var i = 0; i < data.buy_orders.length; i++) {
+      var company = find_company_identifier(data.buy_orders[i].company);
+      company.sellStock(player, data.buy_orders[i]);
     }
   }
   updateStock();
@@ -87,13 +87,15 @@ function nextGamePhase() {
   for (var i = 0; i < primaries.length; i++) {
     primaries[i].randomizeStockPrice();
   }
-  for (var i = 0; i < players.length; i++) {
-    players[i].ready = false;
-    players[i].company.calculateValue()
-  }
   for (var i = 0; i < companies.length; i++) {
     companies[i].revalueShares();
   }
+  for (var i = 0; i < players.length; i++) {
+    players[i].ready = false;
+    players[i].company.calculateValue();
+    players[i].company.revalueShares();
+  }
+
   for (var i = 0; i < players.length; i++) {
     players[i].update(companies);
   }
