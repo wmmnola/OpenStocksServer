@@ -4,7 +4,6 @@ var connectedSockets = [];
 var express = require("express");
 var socket = require("socket.io");
 var Game = require("./Game/game");
-console.log(Game);
 var hostSocket;
 var running = false;
 var app = express();

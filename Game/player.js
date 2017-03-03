@@ -1,6 +1,5 @@
 var STO = require("./Companies/StockTradingCompany");
 var Game = require("./game");
-console.log(Game);
 class Player {
   constructor(socket) {
     this.socket = socket;
@@ -11,7 +10,6 @@ class Player {
     this.socket.emit("NameRequest", this.socket.id);
   }
   createCompany(data) {
-    console.log(data);
     this.company = new STO(data.name, data.identity);
   }
 

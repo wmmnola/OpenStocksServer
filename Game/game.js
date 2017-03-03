@@ -99,10 +99,10 @@ function nextGamePhase() {
     players[i].company.calculateValue();
     players[i].company.revalueShares();
   }
-
   for (var i = 0; i < players.length; i++) {
     players[i].update(companies);
   }
+  console.log("------");
 }
 module.exports = {
   main, nameHandler

@@ -25,10 +25,8 @@ class BaseCompany {
     for (var i = 0; i < this.shares.length; i++) {
       this.shares[i].calculateSharePrice(this);
     }
-    //console.log(this.identifer + ":" + this.value);
   }
   sellStock(player, order) {
-    //console.log(order);
     for (var i = 0; i < order.buyAmount; i++) {
       player.company.ownedShares.push(this.shares[i]);
 
@@ -41,17 +39,18 @@ class BaseCompany {
   }
   buyBackStock(player, order) {
     var stock_list = player.company.returnStock(this, order.sellAmount);
-    player.company.unloadStock(stock_list);
     for (var i = 0; i < stock_list.length; i++) {
       this.selfOwnedSock.push(stock_list[i]);
     }
+    console.log(player.company.name + " sold " + order.sellAmount +
+      " shares in " + this.name + " for " + this.sharevalue +
+      " per share, for a total of " + order.total);
     this.subtractMoney(order.total);
     player.company.addMoney(order.total)
 
   }
   addMoney(amountToAdd) {
     this.money = parseFloat(this.money) + parseFloat(amountToAdd);
-    console.log(this.money);
   }
   subtractMoney(amount) {
     this.money = parseFloat(this.money) - parseFloat(amount);
