@@ -29,7 +29,6 @@ function main(sockets) {
 }
 
 function nameHandler(data) {
-  console.log(data.id);
   var id = data.id;
   var player = find_id(id, players);
   player.createCompany(data);
@@ -56,12 +55,17 @@ function endTurnHandler(data) {
       company.sellStock(player, data.buy_orders[i]);
     }
   }
+  if (data.sell_orders) {
+    for (var i = 0; i < data.sell_orders.length; i++) {
+      var company = find_company_identifier(data.sell_orders[i].company);
+      company.buyBackStock(player, data.sell_orders[i]);
+    }
+  }
   updateStock();
   if (all_players_ready()) nextGamePhase();
 }
 
 function find_company_identifier(company) {
-  console.log(company);
   for (var i = 0; i < companies.length; i++) {
     if (companies[i].identifer == company.identifer) return companies[i];
   }

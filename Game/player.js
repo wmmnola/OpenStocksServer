@@ -22,7 +22,6 @@ class Player {
 }
 
 function sendData(player, companies) {
-
   var payload = {
     playerCompany: player.company,
     companies: companies,

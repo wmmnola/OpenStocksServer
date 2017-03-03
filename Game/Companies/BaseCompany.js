@@ -39,6 +39,23 @@ class BaseCompany {
     this.money += parseFloat(order.total).toFixed(2);
     this.money = parseFloat(this.money).toFixed(2);
   }
+  buyBackStock(player, order) {
+    var stock_list = player.company.returnStock(this, order.sellAmount);
+    player.company.unloadStock(stock_list);
+    for (var i = 0; i < stock_list.length; i++) {
+      this.selfOwnedSock.push(stock_list[i]);
+    }
+    this.subtractMoney(order.total);
+    player.company.addMoney(order.total)
+
+  }
+  addMoney(amountToAdd) {
+    this.money = parseFloat(this.money) + parseFloat(amountToAdd);
+    console.log(this.money);
+  }
+  subtractMoney(amount) {
+    this.money = parseFloat(this.money) - parseFloat(amount);
+  }
 }
 
 module.exports = BaseCompany;
